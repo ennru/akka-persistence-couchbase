@@ -6,13 +6,18 @@ import sbt._
 
 object Dependencies {
   val Scala211 = "2.11.12"
-  val Scala212 = "2.12.8"
-  val Scala213 = "2.13.0-M5"
+  val Scala212 = "2.12.11"
+  val Scala213 = "2.13.1"
 
-  val AkkaVersion = "2.5.21"
-  val AlpakkaCouchbaseVersion = "1.0.1"
-  val LagomVersion = "1.5.1"
+  val AkkaVersion = "2.5.25"
+  val AlpakkaCouchbaseVersion = "1.1.2"
+  val LagomVersion = "1.5.4"
+
+  val ScalaCollectionCompat = "2.1.4"
+
   object Compile {
+    val scalaCollectionCompat = "org.scala-lang.modules" %% "scala-collection-compat" % ScalaCollectionCompat
+
     // used to easily convert rxjava into reactive streams and then into akka streams
     val rxJavaReactiveStreams = "io.reactivex" % "rxjava-reactive-streams" % "1.2.1" // Apache V2
 
@@ -37,7 +42,7 @@ object Dependencies {
     val akkaMultiNodeTestkit = "com.typesafe.akka" %% "akka-multi-node-testkit" % AkkaVersion % Test
 
     val logback = "ch.qos.logback" % "logback-classic" % "1.2.3" % Test // EPL 1.0 / LGPL 2.1
-    val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5" % Test // ApacheV2
+    val scalaTest = "org.scalatest" %% "scalatest" % "3.0.8" % Test // ApacheV2
     val junit = "junit" % "junit" % "4.12" % Test
     val junitInterface = "com.novocode" % "junit-interface" % "0.11" % Test
 
@@ -45,13 +50,14 @@ object Dependencies {
     val lagomTestKitJavaDsl = "com.lightbend.lagom" %% "lagom-javadsl-testkit" % LagomVersion % Test
     val lagomPersistenceTestKit = "com.lightbend.lagom" %% "lagom-persistence-testkit" % LagomVersion % Test
 
-    val slf4jApi = "org.slf4j" % "slf4j-api" % "1.7.26" % Test
+    val slf4jApi = "org.slf4j" % "slf4j-api" % "1.7.28" % Test
   }
 
   import Compile._
   import TestDeps._
 
   val core = Seq(
+    scalaCollectionCompat,
     akkaActor,
     akkaPersistence,
     akkaPersistenceQuery,
