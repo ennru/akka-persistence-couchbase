@@ -145,7 +145,7 @@ final class CouchbaseSnapshotStore(cfg: Config, configPath: String) extends Snap
       filter = filter.and(x(Fields.SequenceNr).lte(criteria.maxSequenceNr))
 
     if (criteria.minSequenceNr != 0)
-      filter = filter.and(x(Fields.SequenceNr).gte(criteria.maxSequenceNr))
+      filter = filter.and(x(Fields.SequenceNr).gte(criteria.minSequenceNr))
 
     if (criteria.maxTimestamp != Long.MaxValue)
       filter = filter.and(x(Fields.Timestamp).lte(criteria.maxTimestamp))
